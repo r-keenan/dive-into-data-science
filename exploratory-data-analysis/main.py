@@ -40,3 +40,15 @@ print(f'Warmer mornings: {countWarmerMornings}')
 # colder morning hours
 countColderMornings = hourCsv.loc[(hourCsv['hr'] < 5) & (hourCsv['temp'] > .50), 'count'].mean()
 print(f'Colder mornings: {countColderMornings}')
+
+# higher temps or higher humidity
+countHigherTempHumidity = hourCsv.loc[(hourCsv['temp'] > 0.5) | (hourCsv['hum'] > .5), 'count'].mean()
+print(f'Mean of higher temp or humidity: {countHigherTempHumidity}')
+
+# seasonal data
+countSeasonalGrouping = hourCsv.groupby(['season'])['count'].mean()
+print(f'Seasonal data: {countSeasonalGrouping}')
+
+# seasonal and holiday grouping
+countSeasonalHolidayGrouping = hourCsv.groupby(['season', 'holiday'])['count'].mean()
+print(f'Seasonal and Holiday grouping: {countSeasonalHolidayGrouping}')
