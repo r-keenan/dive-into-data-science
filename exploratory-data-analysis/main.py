@@ -20,3 +20,23 @@ print(f'Registered Maximum: {registeredMaximum}')
 hourDescribe = hourCsv.describe()
 
 print(hourDescribe)
+
+# printing value row three of the Count column. 0 based index
+countIndividualValue = hourCsv.loc[3, 'count']
+print(f'row three value of the Count column: {countIndividualValue}')
+
+#get a range of row values from the Registered column
+registeredValuesArray = hourCsv.loc[2:4, 'registered']
+print(f'registeredValues: {registeredValuesArray}')
+
+# nighttime observations
+registeredNighttimeObservations = hourCsv.loc[hourCsv['hr'] < 5, 'registered'].mean()
+print(f'Nighttime observation: {registeredNighttimeObservations}')
+
+# warmer morning hours
+countWarmerMornings = hourCsv.loc[(hourCsv['hr'] < 5) & (hourCsv['temp'] <.50), 'count'].mean()
+print(f'Warmer mornings: {countWarmerMornings}')
+
+# colder morning hours
+countColderMornings = hourCsv.loc[(hourCsv['hr'] < 5) & (hourCsv['temp'] > .50), 'count'].mean()
+print(f'Colder mornings: {countColderMornings}')
