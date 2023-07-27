@@ -25,24 +25,28 @@ print(hourDescribe)
 countIndividualValue = hourCsv.loc[3, 'count']
 print(f'row three value of the Count column: {countIndividualValue}')
 
-#get a range of row values from the Registered column
+# get a range of row values from the Registered column
 registeredValuesArray = hourCsv.loc[2:4, 'registered']
 print(f'registeredValues: {registeredValuesArray}')
 
 # nighttime observations
-registeredNighttimeObservations = hourCsv.loc[hourCsv['hr'] < 5, 'registered'].mean()
+registeredNighttimeObservations = hourCsv.loc[hourCsv['hr'] < 5, 'registered'].mean(
+)
 print(f'Nighttime observation: {registeredNighttimeObservations}')
 
 # warmer morning hours
-countWarmerMornings = hourCsv.loc[(hourCsv['hr'] < 5) & (hourCsv['temp'] <.50), 'count'].mean()
+countWarmerMornings = hourCsv.loc[(hourCsv['hr'] < 5) & (
+    hourCsv['temp'] < .50), 'count'].mean()
 print(f'Warmer mornings: {countWarmerMornings}')
 
 # colder morning hours
-countColderMornings = hourCsv.loc[(hourCsv['hr'] < 5) & (hourCsv['temp'] > .50), 'count'].mean()
+countColderMornings = hourCsv.loc[(hourCsv['hr'] < 5) & (
+    hourCsv['temp'] > .50), 'count'].mean()
 print(f'Colder mornings: {countColderMornings}')
 
 # higher temps or higher humidity
-countHigherTempHumidity = hourCsv.loc[(hourCsv['temp'] > 0.5) | (hourCsv['hum'] > .5), 'count'].mean()
+countHigherTempHumidity = hourCsv.loc[(hourCsv['temp'] > 0.5) | (
+    hourCsv['hum'] > .5), 'count'].mean()
 print(f'Mean of higher temp or humidity: {countHigherTempHumidity}')
 
 # seasonal data
@@ -50,5 +54,6 @@ countSeasonalGrouping = hourCsv.groupby(['season'])['count'].mean()
 print(f'Seasonal data: {countSeasonalGrouping}')
 
 # seasonal and holiday grouping
-countSeasonalHolidayGrouping = hourCsv.groupby(['season', 'holiday'])['count'].mean()
+countSeasonalHolidayGrouping = hourCsv.groupby(
+    ['season', 'holiday'])['count'].mean()
 print(f'Seasonal and Holiday grouping: {countSeasonalHolidayGrouping}')
