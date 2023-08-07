@@ -68,6 +68,6 @@ print(cor_matrix)
 # heat map
 plt.figure(figsize=(14, 10))
 corr = hourCsv[thenames].corr()
-sns.heatmap(corr, annot=True, cmap='binary', fmt='.3f',
+sns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.3f',
             xticklabels=thenames, yticklabels=thenames)
 plt.show()
