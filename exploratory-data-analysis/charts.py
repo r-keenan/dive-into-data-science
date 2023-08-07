@@ -42,10 +42,16 @@ plt.ylabel('Count')
 plt.title('Counts by Hour')
 plt.show()
 
-# histogram
+# histogram - plots out frequency
 fix, ax = plt.subplots(figsize=(10, 6))
 ax.hist(hourCsv['count'], bins=80)
 plt.xlabel('Ridership')
 plt.ylabel('Frequency')
 plt.title("Ridership Histogram")
+plt.show()
+
+# pair plot
+thevariables = ['hr', 'temp', 'windspeed']
+hour_first100 = hourCsv.loc[0:100, thevariables]
+sns.pairplot(hour_first100, corner=True)
 plt.show()
