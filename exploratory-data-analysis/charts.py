@@ -55,3 +55,12 @@ thevariables = ['hr', 'temp', 'windspeed']
 hour_first100 = hourCsv.loc[0:100, thevariables]
 sns.pairplot(hour_first100, corner=True)
 plt.show()
+
+# correlations || -1 == negative correlation || 1 == positive correlation || 0 == uncorrelated
+print(hourCsv['casual'].corr(hourCsv['registered']))
+print(hourCsv['temp'].corr(hourCsv['hum']))
+
+# correlation matrix
+thenames = ['hr', 'temp', 'windspeed']
+cor_matrix = hourCsv[thenames].corr()
+print(cor_matrix)
