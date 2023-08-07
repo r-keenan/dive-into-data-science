@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 hourCsv = pd.read_csv('./hour.csv')
 
@@ -31,4 +32,20 @@ ax.plot(hour_first48['instant'], hour_first48['casual'],
 ax.plot(hour_first48['instant'], hour_first48['registered'],
         c='blue', label='registered', linestyle='--')
 ax.legend()
+plt.show()
+
+# Box plot
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.boxplot(x='hr', y='registered', data=hourCsv)
+plt.xlabel('Hour')
+plt.ylabel('Count')
+plt.title('Counts by Hour')
+plt.show()
+
+# histogram
+fix, ax = plt.subplots(figsize=(10, 6))
+ax.hist(hourCsv['count'], bins=80)
+plt.xlabel('Ridership')
+plt.ylabel('Frequency')
+plt.title("Ridership Histogram")
 plt.show()
