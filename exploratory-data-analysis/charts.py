@@ -65,9 +65,17 @@ thenames = ['hr', 'temp', 'windspeed']
 cor_matrix = hourCsv[thenames].corr()
 print(cor_matrix)
 
-# heat map
+# heat map with correlation matrices
 plt.figure(figsize=(14, 10))
 corr = hourCsv[thenames].corr()
 sns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.3f',
             xticklabels=thenames, yticklabels=thenames)
+plt.show()
+
+# heat map showing number of riders at each hour throughout a week
+# create pivot table
+df_hm = hourCsv.pivot_table(index='hr', columns='weekday', values='count')
+# Draw a heatmap
+plt.figure(figsize=(20, 10))
+sns.heatmap(df_hm, fmt='d', cmap='coolwarm', linewidths=.5, vmin=0)
 plt.show()
