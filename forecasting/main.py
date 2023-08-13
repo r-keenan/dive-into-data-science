@@ -85,4 +85,13 @@ print(get_rmse(regressionline, saleslist))
 print(get_rmse(hyptothesizedline, saleslist))
 
 # extending out the x-axis for forecasting out the future.
-x_extend = np.append(carsales['period'], np.arrange(108, 116))
+x_extended = np.append(carsales['period'], np.arange(108, 116))
+x_extended = x_extended.reshape(-1, 1)
+extended_prediction = regressor.predict(x_extended)
+
+plt.scatter(carsales['period'], carsales['sales'])
+plt.plot(x_extended, extended_prediction, 'r--')
+plt.title('Car Sales by Month')
+plt.xlabel('Month')
+plt.ylabel('Sales')
+plt.show()
