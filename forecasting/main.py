@@ -1,6 +1,22 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression
+import numpy as np
+
+
+def get_mae(line, actual):
+    error = [(x-y) for x, y in zip(line, actual)]
+    errorabs = [abs(value) for value in error]
+    mae = np.mean(errorabs)
+    return (mae)
+
+
+def get_rmse(line, actual):
+    error = [(x-y) for x, y in zip(line, actual)]
+    errorsquared = [(value)**2 for value in error]
+    rmse = np.sqrt(np.mean(errorsquared))
+    return (rmse)
+
 
 carsales = pd.read_csv('carsales.csv')
 
@@ -43,3 +59,30 @@ plt.title('Car Sales by Month')
 plt.xlabel('Month')
 plt.ylabel('Sales')
 plt.show()
+
+# calculating regression errors
+saleslist = carsales['sales'].tolist()
+regressionline = [81.2 * i + 10250.8 for i in carsales['period']]
+hyptothesizedline = [125 * i + 8000 for i in carsales['period']]
+error1 = [(x-y) for x, y in zip(regressionline, saleslist)]
+error2 = [(x-y) for x, y in zip(hyptothesizedline, saleslist)]
+
+# mean absolute error (MAE)
+# regression line
+error1abs = [abs(value) for value in error1]
+# hypothesized line
+error2abs = [abs(value) for value in error2]
+print(np.mean(error1abs))
+print(np.mean(error2abs))
+
+# root mean squared error (RMSE)
+error1squared = [(value)**2 for value in error1]
+error2squared = [(value)**2 for value in error2]
+print(np.sqrt(np.mean(error1squared)))
+print(np.sqrt(np.mean(error2squared)))
+
+print(get_rmse(regressionline, saleslist))
+print(get_rmse(hyptothesizedline, saleslist))
+
+# extending out the x-axis for forecasting out the future.
+x_extend = np.append(carsales['period'], np.arrange(108, 116))
