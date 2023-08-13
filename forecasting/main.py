@@ -89,6 +89,7 @@ x_extended = np.append(carsales['period'], np.arange(108, 116))
 x_extended = x_extended.reshape(-1, 1)
 extended_prediction = regressor.predict(x_extended)
 
+# the predicted future sales of cars along with the original regression line
 plt.scatter(carsales['period'], carsales['sales'])
 plt.plot(x_extended, extended_prediction, 'r--')
 plt.title('Car Sales by Month')
